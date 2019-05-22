@@ -36,3 +36,10 @@ npm start
        - If we click on any day we get forcast for that day and a graph represting the changes in 'temperature' and 'humidity'
          for that day using chart.js.
 ``` 
+### react.js component
+
+```
+I have used one component where current place weather place data is rendered.
+If current data is updated then nested routing navigation is rendered to UI.
+There there are 4 navigation items and each one represent that day forcast in numbers and in graphical form.
+```

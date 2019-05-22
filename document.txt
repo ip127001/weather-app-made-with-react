@@ -1,0 +1,41 @@
+Components
+
+-> WeatherForcast.js = Main component
+-> Today.js, Tomorrow.js, NextDay.js, OtherDay.js  => each day data for next 3 days
+
+
+functions and their working
+
+
+handleScriptLoad() = 
+
+handlePlaceSelect() = 
+
+
+
+
+React.js
+1. Get the coordinates of the place which is selected
+    First we open the application we are presented with a search bar.
+    As long as we type in search bar we have suggestions of places using google places api.
+    We click on place and then event listener triggered.
+    Then we get longitude and latitude from Address Object.
+
+2. Get the current weather information
+    Se the coordinates received from Address Object using setState({}) method
+    Then send the get request to openWeatherMap data api to get the current weather data for that place.
+    If we successfully get the data then in then() method do the following:-
+        - set the temperature, humidity, rain, min_temp, max_temp and weather icon in the state.
+        - send the get request to openWeatherMap forcast api to get 5days forcast data for that place.
+    - If we successfully get the data then in then() method do the following:-
+        - According to dates we set the each day weather data to 4 arrays.
+        - Then set the state object properties(data_arr_1...) to each day data.
+3. UI gets updated with current and next 3 days data.
+    If the sucessfully get data from 'data API' then tabular data gets updated and rendered in UI.
+    If the succesfully get data from 'forcst API' then a today & 3-days forcast navigation is rendered in UI.
+        - If we click on any day we get forcast for that day and a graph represting the changes in 'temperature' and 'humidity' for that day using chart.js.
+
+
+
+
+logic to add data to chart.js data array with showing temperature and humidity for available data returned from openweathermap api
