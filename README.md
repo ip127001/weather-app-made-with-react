@@ -9,6 +9,8 @@ npm start
 
 ## Flow of the application
 
-```
+``
+**Main component** - *WeatherForcast Component*
+
 
 ```

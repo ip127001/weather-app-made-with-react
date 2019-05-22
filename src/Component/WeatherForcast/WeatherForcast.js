@@ -64,8 +64,16 @@ class WeatherForcast extends Component {
 
 
     todayGraphHandler = () => {
+        //set the click to true
         this.setState({dayClicked: true})
+
+        //if data in array is filled then show the routing navigation
         if(this.state.data_arr_1[0]) {
+            
+            /*
+            logic to add data to chart.js data array with showing 
+            temperature and humidity for available data returned from openweathermap api
+            */
             const time = [0,3,6,9,12,15,18,21];
             let hours = new Date(this.state.data_arr_1[0].day).getHours();
             let sliceIndex;
@@ -74,11 +82,19 @@ class WeatherForcast extends Component {
                     sliceIndex = i
                 }
             })
-    
-            let newTimeArray_1 = time.splice(0, sliceIndex);
-            const newTimeArray_2 = newTimeArray_1.map(el => {
+            
+            //slice the array till our retrieved data matches the timing
+            let newTimeArray_1 = time.splice(0, sliceIndex);  
+
+            /*
+            create 0 values in a seperate array for not available data 
+            so that it can be concinated with original data for chart.js data array
+            */
+            const newTimeArray_2 = newTimeArray_1.map(el => { 
                 return 0
-            })
+            });
+
+            //Now compare timing with retrieved data timing and add temperature to the array
             const temperature_data = this.state.data_arr_1.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -87,6 +103,8 @@ class WeatherForcast extends Component {
                     return 0;
                 }
             });
+            
+            //Now compare timing with retrieved data timing and add humidity to the array
             const humidity_data = this.state.data_arr_1.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -95,18 +113,28 @@ class WeatherForcast extends Component {
                     return 0;
                 }
             });
-    
+
+            //create the deep copy of chartData object and assign the data.
             const updatedChartData = Object.assign({}, this.state.chartData);
             updatedChartData.datasets[0].data = newTimeArray_2.concat(temperature_data);
             updatedChartData.datasets[1].data = newTimeArray_2.concat(humidity_data);
 
+            //finally set the state object to updatedChartData object
             this.setState({chartData: updatedChartData});
         }
     }
 
     tomorrowGraphHandler = () => {
+        //set the click to true
         this.setState({dayClicked: true})
+        
+        //if data in array is filled then show the routing navigation
         if(this.state.data_arr_2[0]) {
+
+            /*
+            logic to add data to chart.js data array with showing 
+            temperature and humidity for available data returned from openweathermap api
+            */
             const time = [0,3,6,9,12,15,18,21];
             let hours = new Date(this.state.data_arr_2[0].day).getHours();
             let sliceIndex;
@@ -116,10 +144,18 @@ class WeatherForcast extends Component {
                 }
             })
     
-            let newTimeArray_1 = time.splice(0, sliceIndex-1);
+            //slice the array till our retrieved data matches the timing
+            let newTimeArray_1 = time.splice(0, sliceIndex); 
+
+            /*
+            create 0 values in a seperate array for not available data 
+            so that it can be concinated with original data for chart.js data array
+            */
             const newTimeArray_2 = newTimeArray_1.map(el => {
                 return 0
             })
+
+            //Now compare timing with retrieved data timing and add temperature to the array
             const temperature_data = this.state.data_arr_2.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -128,6 +164,8 @@ class WeatherForcast extends Component {
                     return 0;
                 }
             });
+
+            //Now compare timing with retrieved data timing and add humidity to the array
             const humidity_data = this.state.data_arr_2.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -137,17 +175,27 @@ class WeatherForcast extends Component {
                 }
             });
     
+            //create the deep copy of chartData object and assign the data.
             const updatedChartData = Object.assign({}, this.state.chartData);
             updatedChartData.datasets[0].data = newTimeArray_2.concat(temperature_data);
             updatedChartData.datasets[1].data = newTimeArray_2.concat(humidity_data);
 
+            //finally set the state object to updatedChartData object
             this.setState({chartData: updatedChartData});
         }
     }
 
     nextDayGraphHandler = () => {
+        //set the click to true
         this.setState({dayClicked: true})
+
+         //if data in array is filled then show the routing navigation
         if(this.state.data_arr_3[0]) {
+            
+            /*
+            logic to add data to chart.js data array with showing 
+            temperature and humidity for available data returned from openweathermap api
+            */
             const time = [0,3,6,9,12,15,18,21];
             let hours = new Date(this.state.data_arr_3[0].day).getHours();
             let sliceIndex;
@@ -157,10 +205,18 @@ class WeatherForcast extends Component {
                 }
             })
     
+            //slice the array till our retrieved data matches the timing
             let newTimeArray_1 = time.splice(0, sliceIndex);
+
+            /*
+            create 0 values in a seperate array for not available data 
+            so that it can be concinated with original data for chart.js data array
+            */
             const newTimeArray_2 = newTimeArray_1.map(el => {
                 return 0
             })
+
+            //Now compare timing with retrieved data timing and add temperature to the array
             const temperature_data = this.state.data_arr_3.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -169,6 +225,7 @@ class WeatherForcast extends Component {
                     return 0;
                 }
             });
+            //Now compare timing with retrieved data timing and add humidity to the array
             const humidity_data = this.state.data_arr_3.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -178,17 +235,25 @@ class WeatherForcast extends Component {
                 }
             });
     
+            //create the deep copy of chartData object and assign the data.
             const updatedChartData = Object.assign({}, this.state.chartData);
             updatedChartData.datasets[0].data = newTimeArray_2.concat(temperature_data);
             updatedChartData.datasets[1].data = newTimeArray_2.concat(humidity_data);
 
+            //finally set the state object to updatedChartData object
             this.setState({chartData: updatedChartData});
         }
     }
 
     nextNextDayGraphHandler = () => {
+        //set the click to true
         this.setState({dayClicked: true})
         if(this.state.data_arr_4[0]) {
+
+            /*
+            logic to add data to chart.js data array with showing 
+            temperature and humidity for available data returned from openweathermap api
+            */
             const time = [0,3,6,9,12,15,18,21];
             let hours = new Date(this.state.data_arr_4[0].day).getHours();
             let sliceIndex;
@@ -198,10 +263,18 @@ class WeatherForcast extends Component {
                 }
             })
     
+            //slice the array till our retrieved data matches the timing
             let newTimeArray_1 = time.splice(0, sliceIndex);
+
+            /*
+            create 0 values in a seperate array for not available data 
+            so that it can be concinated with original data for chart.js data array
+            */
             const newTimeArray_2 = newTimeArray_1.map(el => {
                 return 0
             })
+
+            //Now compare timing with retrieved data timing and add temperature to the array
             const temperature_data = this.state.data_arr_4.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -210,6 +283,8 @@ class WeatherForcast extends Component {
                     return 0;
                 }
             });
+
+            //Now compare timing with retrieved data timing and add humidity to the array
             const humidity_data = this.state.data_arr_4.map((dt, i) => {
                 let day = new Date(dt.day).getHours()
                 if(day === time[i]) {
@@ -218,11 +293,13 @@ class WeatherForcast extends Component {
                     return 0;
                 }
             });
-    
+
+            //create the deep copy of chartData object and assign the data.
             const updatedChartData = Object.assign({}, this.state.chartData);
             updatedChartData.datasets[0].data = newTimeArray_2.concat(temperature_data);
             updatedChartData.datasets[1].data = newTimeArray_2.concat(humidity_data);
 
+             //finally set the state object to updatedChartData object
             this.setState({chartData: updatedChartData});
         }
     }
@@ -247,7 +324,7 @@ class WeatherForcast extends Component {
     
         // Check if address is valid
         if (address) {
-            // Set State
+            // Set State for place, latitude, & longitude
             this.setState(
             {
                 place: addressObject.formatted_address,
@@ -256,6 +333,7 @@ class WeatherForcast extends Component {
             });
         }
 
+        //get the weather data for the paricular latitude and longitude
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${api_key}&units=metric`;
         axios.get(url)
         .then(data => {
@@ -265,6 +343,8 @@ class WeatherForcast extends Component {
             } else {
                 rain_data = 'No rain'
             }
+
+            //set the state
             this.setState({
                 temperature: data.data.main.temp, 
                 humidity: data.data.main.humidity,
@@ -276,6 +356,8 @@ class WeatherForcast extends Component {
                 max_temperature: data.data.main.temp_max,
                 clicked: true
             })
+
+            //get the 5 days forcast
             const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${api_key}&units=metric`;
             axios.get(url)
                 .then(data => {
@@ -283,6 +365,8 @@ class WeatherForcast extends Component {
                     const next_day_1 = [];
                     const next_day_2 = [];
                     const next_day_3 = [];
+
+                    //get the data and assign only particular information
                     const weather_arr = data.data.list.map(dt => {
                         return { 
                             max_temperature: dt.main.temp_max,
@@ -294,6 +378,8 @@ class WeatherForcast extends Component {
                             humidity: dt.main.humidity
                         };
                     })
+
+                    // set the days wise data to each arrays
                     for(let i in weather_arr) {
                         if(new Date(weather_arr[i].day).getDate() === new Date().getDate()) {
                             today_data.push(weather_arr[i]);
@@ -308,6 +394,8 @@ class WeatherForcast extends Component {
                             next_day_3.push(weather_arr[i]);
                         }
                     }
+
+                    //assign today and next 3 days data to different arrays
                     this.setState({
                         data_arr_1: today_data,
                         data_arr_2: next_day_1,
@@ -330,11 +418,15 @@ class WeatherForcast extends Component {
         let image;
         let line = null;
         let forcast_data = null;
+
+        //show the graph only when clicked on particular day navigation
         if(this.state.dayClicked) {
             line = <Line data={this.state.chartData}
                         height={100}
                         options={{}} />
         }
+
+        // show the forcast data in UI when search data loads
         if(this.state.load) {
             forcast_data = (
                 <div className="ForcastForward">
@@ -401,11 +493,15 @@ class WeatherForcast extends Component {
                 </div>
             );
         }
+
+        // if icon is available then fetch the image otherwise null
         if(this.state.icon) {
             image = <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`} alt="icon" />;
         } else {
             image = null;
         }
+
+        // don't show table data untill search data is retrieved
         if(this.state.clicked) {
             table = <table className="Table">
                             <thead>
