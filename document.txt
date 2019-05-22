@@ -7,11 +7,18 @@ Components
 functions and their working
 
 
-handleScriptLoad() = 
+handleScriptLoad() = when a place is searched in the search bar.
+                    - initialize google autocomplete
+                    - add a event listener to initialize
+                    - when it fired then call handlePlaceSelect().
 
-handlePlaceSelect() = 
-
-
+handlePlaceSelect() = when place is selected
+                    - call the openWeatherMap api to get the current place weather data
+                    - set it the state object properties(temperature, humidity and rain)
+                    - call the openWeatherMap api to get today and 3 days forcast.
+                    - set the state.
+todayGraphHandler() = to set the chart.js data
+                    - show the temperature and humidity data across forcast data
 
 
 React.js
