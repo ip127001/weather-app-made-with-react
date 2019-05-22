@@ -338,7 +338,7 @@ class WeatherForcast extends Component {
         if(this.state.load) {
             forcast_data = (
                 <div className="ForcastForward">
-                    <h4 style={{textAlign:"center"}}>Temperature of next 5 days</h4>
+                    <h4 style={{textAlign:"center"}}>Temperature of today and next 3 days</h4>
                     <div>
                         <ul className="NavigationItems">
                             <li className="NavigationItem" onClick={this.todayGraphHandler}>
