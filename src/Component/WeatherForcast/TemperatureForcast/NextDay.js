@@ -2,7 +2,7 @@ import React from 'react'
 
 import '../WeatherForcast.css';
 
-const TTTomorrow = (props) => {
+const NextDay = (props) => {
     let data = props.data.map((dt,i) => {
         return (
             <div key={i} className="Today">
@@ -11,7 +11,7 @@ const TTTomorrow = (props) => {
                 <img src={`http://openweathermap.org/img/w/${dt.icon}.png`} alt="icon" /><br></br>
                 <span>{dt.min_temperature}&deg;C</span> <span></span>-<span>{dt.max_temperature}&deg;C</span>
             </div>
-        )                                                   
+        )
     })
     return (
         <div>
@@ -20,4 +20,4 @@ const TTTomorrow = (props) => {
     );
 }
 
-export default TTTomorrow;
+export default NextDay;

@@ -9,8 +9,8 @@ import Script from 'react-load-script';
 import axios from 'axios'
 import Today from './TemperatureForcast/Today'
 import Tomorrow from './TemperatureForcast/Tomorrow';
-import TTomorrow from './TemperatureForcast/TTomorrow';
-import TTTomorrow from './TemperatureForcast/TTTomorrow';
+import NextDay from './TemperatureForcast/NextDay';
+import OtherDay from './TemperatureForcast/OtherDay';
 
 const api_key = '49f8e6a3be140996f48e585a4b18d1d9';
 
@@ -386,13 +386,13 @@ class WeatherForcast extends Component {
                             path={this.props.match.path + "next_day_2"} 
                             exact
                             render={props => (
-                                <TTomorrow {...props} data={this.state.data_arr_3} />
+                                <NextDay {...props} data={this.state.data_arr_3} />
                         )} />
                         <Route 
                             path={this.props.match.path + "next_day_3"} 
                             exact
                             render={props => (
-                                <TTTomorrow {...props} data={this.state.data_arr_4} />
+                                <OtherDay {...props} data={this.state.data_arr_4} />
                         )} />
                     </Switch>
                     <div className="Line">
